@@ -1,0 +1,75 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.cesarvaliente.devicetesting"
+        minSdk 29
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    testOptions {
+        devices {
+//            pixel2api29(com.android.build.api.dsl.ManagedVirtualDevice) {
+//                // Use device profiles you typically see in Android Studio
+//                device = "Pixel 2"
+//                apiLevel = 29
+//                // You can also specify "aosp" if you don’t require Google Play Services.
+//                systemImageSource = "google"
+//                abi = "x86_64"
+//            }
+//            nexus9api30(com.android.build.api.dsl.ManagedVirtualDevice) {
+//                device = "Nexus 9"
+//                apiLevel = 30
+//                systemImageSource = "aosp"
+//                abi = "x86_64"
+//            }
+//            deviceGroups(com.android.build.api.dsl.ManagedVirtualDevice) {
+//                phoneAndTablet {
+//                    targetDevices.addAll(devices.pixel2api29, devices.nexus9api30)
+//                }
+//            }
+            //ATD test
+            pixel4api30(com.android.build.api.dsl.ManagedVirtualDevice) {
+                // Use device profiles you typically see in Android Studio
+                device = "Pixel 4"
+                apiLevel = 30
+                // You can also specify "google-atd" if you require Google Play Services.
+                systemImageSource = "google-atd"
+                abi = "x86"
+            }
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
